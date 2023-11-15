@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Assignment3_N01609602.Models.Teacher>
+@{
+    ViewBag.Title = "Teachers List";
+}
+
+<h2>Teachers</h2>
+<hr />
+@foreach (var teacher in Model)
+{
+    <div class="list-group">
+        <a href="/Teachers/Details/@teacher.id" class="list-group-item list-group-item-action mt-2">
+            @teacher.firstName @teacher.lastName
+        </a>
+    </div>
+}
+

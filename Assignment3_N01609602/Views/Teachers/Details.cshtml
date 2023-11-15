@@ -1,0 +1,42 @@
+﻿@model Assignment3_N01609602.Models.Teacher
+@{
+    ViewBag.Title = "Teacher Details";
+}
+
+<a href="/Teachers/List" class="text-primary my-3">Back to List</a>
+<div class="card mt-3" style="width: 50%">
+    <div class="card-header">
+        <h2 class="card-title m-0">@Model.firstName @Model.lastName</h2>
+    </div>
+    <div class="card-body">
+        
+        <div class="w-100 mt-2 mb-3">
+            <p class="text-dark m-0" style="font-size: 12px">
+                Hire date
+            </p>
+            <p class="card-text text-dark m-0" style="font-size: 18px">
+                @Model.hireDate
+            </p>
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="w-50">
+                <p class="text-dark m-0" style="font-size: 12px">
+                    Employee number
+                </p>
+                <p class="card-text text-dark m-0" style="font-size: 18px">
+                    @Model.employeeNumber
+                </p>
+            </div>
+            <div class="w-50">
+                <p class="text-dark m-0" style="font-size: 12px">
+                    Salary
+                </p>
+                <p class="card-text text-dark m-0" style="font-size: 18px">
+                    $@Model.salary
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
