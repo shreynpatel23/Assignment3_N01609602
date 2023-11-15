@@ -125,7 +125,7 @@ namespace Assignment3_N01609602.Controllers
             //Close the connection between the MySQL Database and the WebServer
             Conn.Close();
 
-            //Return the final list of teachers
+            //Return the teacher data
             return teacher;
         }
     }
