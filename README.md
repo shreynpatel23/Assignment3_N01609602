@@ -12,7 +12,7 @@ This application will help you to
 
 ## For Students
 This application will help you to
-- View the list of students
-- Seach through student's with their first name and last name
-- View each student's details
+- View the list of students.
+- Search through the student's list with their first name and last name.
+- View each student's details.
 - View the subjects in which the student is enrolled.
