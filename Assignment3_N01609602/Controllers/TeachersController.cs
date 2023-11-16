@@ -25,5 +25,12 @@ namespace Assignment3_N01609602.Controllers
             return View(Teacher);
         }
 
+        //GET : Teachers/Classes/{id}
+        public ActionResult Classes(int id)
+        {
+            TeachersDataController controller = new TeachersDataController();
+            IEnumerable<Classes> Classes = controller.fetchAllClaasesOfTeacher(id);
+            return View(Classes);
+        }
     }
 }

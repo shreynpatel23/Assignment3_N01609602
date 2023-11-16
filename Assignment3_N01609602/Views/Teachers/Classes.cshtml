@@ -1,0 +1,40 @@
+﻿
+@model IEnumerable<Assignment3_N01609602.Models.Classes>
+@{
+    ViewBag.Title = "Teacher's Classes List";
+}
+
+<h3>Teacher Teaching classes</h3>
+<hr />
+<a href="/Teachers/List">Back</a>
+@if (Model != null)
+{
+    if (Model.Count() > 0)
+    {
+       <div class="card mt-4">
+           <table class="table">
+               <thead>
+                   <tr>
+                       <th scope="col">Class Name</th>
+                       <th scope="col">Class Start Date</th>
+                       <th scope="col">Class End Date</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   @foreach (var newClass in Model)
+                   {
+                       <tr>
+                           <th scope="row">@newClass.className</th>
+                           <td>@newClass.startDate</td>
+                           <td>@newClass.endDate</td>
+                       </tr>
+                   }
+               </tbody>
+           </table>
+       </div>
+    }
+    else
+    {
+        <h5 class="mt-4">This teacher is not teaching any classes!</h5>
+    }
+}

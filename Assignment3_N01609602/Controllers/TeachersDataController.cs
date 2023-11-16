@@ -25,48 +25,48 @@ namespace Assignment3_N01609602.Controllers
         [Route("api/fetchAllTeachers/{searchKey?}")]
         public IEnumerable<Teacher> FetchAllTeachers(string searchKey)
         {
-            //Create an instance of a connection
+            // create an instance
             MySqlConnection Conn = School.AccessDatabase();
 
-            //Open the connection between the web server and database
+            // open the connection
             Conn.Open();
 
-            //Establish a new command (query) for our database
+            // create a command
             MySqlCommand cmd = Conn.CreateCommand();
 
-            //SQL QUERY
+            // query
             cmd.CommandText = "Select * from teachers where lower(teacherfname) like lower(@key) or lower(teacherlname) like lower(@key) or lower(concat(teacherfname, ' ', teacherlname)) like lower(@key)";
 
             cmd.Parameters.AddWithValue("@key", "%" + searchKey + "%");
             cmd.Prepare();
 
-            //Gather Result Set of Query into a variable
-            MySqlDataReader ResultSet = cmd.ExecuteReader();
+            // extract data into resultSet
+            MySqlDataReader resultSet = cmd.ExecuteReader();
 
-            //Create an empty list of teachers
+            // create an empty list of teachers
             List<Teacher> teachers = new List<Teacher> { };
 
-            //Loop Through Each Row the Result Set
-            while (ResultSet.Read())
+            // loop Through Each Result Set
+            while (resultSet.Read())
             {
-                //Access Column information by the DB column name as an index
-                int teacherId = Convert.ToInt32(ResultSet["teacherid"]);
-                string teacherFirstname = ResultSet["teacherfname"].ToString();
-                string teacherLastname = ResultSet["teacherlname"].ToString();
+                // access Column information by the DB column name as an index
+                int teacherId = Convert.ToInt32(resultSet["teacherid"]);
+                string teacherFirstname = resultSet["teacherfname"].ToString();
+                string teacherLastname = resultSet["teacherlname"].ToString();
 
                 Teacher newTeacher = new Teacher();
                 newTeacher.id = teacherId;
                 newTeacher.firstName = teacherFirstname;
                 newTeacher.lastName = teacherLastname;
 
-                //Add the new teacher to the List
+                // add the new teacher to the List
                 teachers.Add(newTeacher);
             }
 
-            //Close the connection between the MySQL Database and the WebServer
+            // close the connection
             Conn.Close();
 
-            //Return the final list of teachers
+            // return the list of teachers
             return teachers;
         }
 
@@ -82,37 +82,39 @@ namespace Assignment3_N01609602.Controllers
         [Route("api/fetchTeacherDetails/{id}")]
         public Teacher FetchTeacherDetails(int id)
         {
-            //Create an instance of a connection
+            // create an instance 
             MySqlConnection Conn = School.AccessDatabase();
 
-            //Open the connection between the web server and database
+            // open the connection 
             Conn.Open();
 
-            //Establish a new command (query) for our database
+            // create a command
             MySqlCommand cmd = Conn.CreateCommand();
 
-            //SQL QUERY
+            // query
             cmd.CommandText = "Select * from teachers where teacherid = @id";
 
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
 
-            //Gather Result Set of Query into a variable
-            MySqlDataReader ResultSet = cmd.ExecuteReader();
+            // extract data into resultSet
+            MySqlDataReader resultSet = cmd.ExecuteReader();
 
-            //Create an empty teacher object
+            // create an empty teacher object
             Teacher teacher = new Teacher();
 
-            //Loop Through Each Row the Result Set
-            while (ResultSet.Read())
+            // loop Through Each data
+            while (resultSet.Read())
             {
                 //Access Column information by the DB column name as an index
-                string teacherFirstname = ResultSet["teacherfname"].ToString();
-                string teacherLastname = ResultSet["teacherlname"].ToString();
-                string employeeNumber = ResultSet["employeenumber"].ToString();
-                string hireDate = Convert.ToDateTime(ResultSet["hiredate"]).ToString("dd/MM/yyyy");
-                decimal salary = Convert.ToDecimal(ResultSet["salary"]);
+                int teacherId = Convert.ToInt32(resultSet["teacherid"]);
+                string teacherFirstname = resultSet["teacherfname"].ToString();
+                string teacherLastname = resultSet["teacherlname"].ToString();
+                string employeeNumber = resultSet["employeenumber"].ToString();
+                string hireDate = Convert.ToDateTime(resultSet["hiredate"]).ToString("dd/MM/yyyy");
+                decimal salary = Convert.ToDecimal(resultSet["salary"]);
 
+                teacher.id = teacherId;
                 teacher.firstName = teacherFirstname;
                 teacher.lastName = teacherLastname;
                 teacher.employeeNumber = employeeNumber;
@@ -120,11 +122,69 @@ namespace Assignment3_N01609602.Controllers
                 teacher.salary = salary;
             }
 
-            //Close the connection between the MySQL Database and the WebServer
+            // close the connection
             Conn.Close();
 
-            //Return the teacher data
+            // return the teacher data
             return teacher;
+        }
+
+        /// <summary>
+        /// Returns all the classes that the teacher is teaching
+        /// </summary>
+        /// <param name="teacherId">The teacher id for which we want to fetch details</param>
+        /// <example>GET api/fetchAllClassesOfTeacher/1</example>
+        /// <returns>
+        /// List of classes that the teacher is teaching
+        /// </returns>
+        [HttpGet]
+        [Route("api/fetchAllClassesOfTeacher/{teacherid}")]
+        public IEnumerable<Classes> fetchAllClaasesOfTeacher(int teacherId)
+        {
+            // create an instance 
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // open the connection
+            Conn.Open();
+
+            // create a command
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // query
+            // FOR THIS QUERY ALSO I HAVE CREATED A VIEW CALLED GET_ALL_SUBJECTS_OF_TEACHER
+            cmd.CommandText = "Select * from get_all_teachers_classes where teacherid = @teacherid";
+
+            cmd.Parameters.AddWithValue("@teacherid", teacherId);
+            cmd.Prepare();
+
+            // gather Result Set
+            MySqlDataReader resultSet = cmd.ExecuteReader();
+
+            // create an empty list of classes
+            List<Classes> classes = new List<Classes> { };
+
+            // loop Through Each Result Set
+            while (resultSet.Read())
+            {
+                //Access Column information by the DB column name as an index
+                string className = resultSet["classname"].ToString();
+                string classStartDate = Convert.ToDateTime(resultSet["startdate"]).ToString("dd/MM/yyyy");
+                string classEndDate = Convert.ToDateTime(resultSet["finishdate"]).ToString("dd/MM/yyyy");
+
+                Classes newClass = new Classes();
+                newClass.className = className;
+                newClass.startDate= classStartDate;
+                newClass.endDate = classEndDate;
+
+                // add the new class to the List
+                classes.Add(newClass);
+            }
+
+            // close the connection
+            Conn.Close();
+
+            // return the of classes
+            return classes;
         }
     }
 }

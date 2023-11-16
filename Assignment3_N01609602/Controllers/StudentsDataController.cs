@@ -26,28 +26,29 @@ namespace Assignment3_N01609602.Controllers
         [Route("api/fetchAllStudents/{searchKey?}")]
         public IEnumerable<Student> FetchAllStudents(string searchKey)
         {
-            //Create an instance of a connection
+            // create an instance
             MySqlConnection Conn = School.AccessDatabase();
 
-            //Open the connection between the web server and database
+            // open the connection
             Conn.Open();
 
-            //Establish a new command (query) for our database
+            // create a command
             MySqlCommand cmd = Conn.CreateCommand();
 
-            //SQL QUERY
+            // query
             cmd.CommandText = "Select * from students where lower(studentfname) like lower(@key) or lower(studentlname) like lower(@key) or lower(concat(studentfname, ' ', studentlname)) like lower(@key)";
 
+            // parameterise the query
             cmd.Parameters.AddWithValue("@key", "%" + searchKey + "%");
             cmd.Prepare();
 
-            //Gather Result Set of Query into a variable
+            // gather Result Set
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
-            //Create an empty list of students
+            // create an empty list of students
             List<Student> students = new List<Student> { };
 
-            //Loop Through Each Row the Result Set
+            // loop Through Each Result Set
             while (ResultSet.Read())
             {
                 //Access Column information by the DB column name as an index
@@ -60,14 +61,14 @@ namespace Assignment3_N01609602.Controllers
                 newStudent.firstName = studentFirstName;
                 newStudent.lastName = studentLastName;
 
-                //Add the new student to the List
+                // add the new student to the List
                 students.Add(newStudent);
             }
 
-            //Close the connection between the MySQL Database and the WebServer
+            // close the connection 
             Conn.Close();
 
-            //Return the final list of students
+            // return the final list of students
             return students;
         }
 
@@ -83,28 +84,29 @@ namespace Assignment3_N01609602.Controllers
         [Route("api/fetchStudentDetails/{id}")]
         public Student FetchStudentDetails(int id)
         {
-            //Create an instance of a connection
+            // create an instance
             MySqlConnection Conn = School.AccessDatabase();
 
-            //Open the connection between the web server and database
+            // open the connection
             Conn.Open();
 
-            //Establish a new command (query) for our database
+            // create a command
             MySqlCommand cmd = Conn.CreateCommand();
 
-            //SQL QUERY
+            // query
             cmd.CommandText = "Select * from students where studentid = @id";
 
+            // parameterise the query
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
 
-            //Gather Result Set of Query into a variable
+            // gather Result Set
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
-            //Create an empty student object
+            // create an empty student object
             Student student = new Student();
 
-            //Loop Through Each Row the Result Set
+            // loop Through Each Row 
             while (ResultSet.Read())
             {
                 //Access Column information by the DB column name as an index
@@ -121,10 +123,10 @@ namespace Assignment3_N01609602.Controllers
                 student.enrolDate = studentEnrolDate;
             }
 
-            //Close the connection between the MySQL Database and the WebServer
+            // close the connection between the MySQL Database and the WebServer
             Conn.Close();
 
-            //Return the teacher data
+            // return the teacher data
             return student;
         }
 
@@ -140,30 +142,31 @@ namespace Assignment3_N01609602.Controllers
         [Route("api/fetchAllClassesOfStudent/{studentId}")]
         public List<Classes> fetchAllClassesOfStudent(int studentId)
         {
-            //Create an instance of a connection
+            // create an instance
             MySqlConnection Conn = School.AccessDatabase();
 
-            //Open the connection between the web server and database
+            // open the connection
             Conn.Open();
 
-            //Establish a new command (query) for our database
+            // create a command
             MySqlCommand cmd = Conn.CreateCommand();
 
-            //SQL QUERY
+            // query
             // FOR THIS API I HAVE CREATED A VIEW IN MY DATABASE CALLED GET_CLASSES_OF_STUDENT
             // IT WILL RETURN THE CLASS INFORMATION AS WELL AS THE TEACHER TEACHING THE CLASS
             cmd.CommandText = "Select * from get_classes_of_students where studentid = @studentid";
 
+            // parameterise the query
             cmd.Parameters.AddWithValue("@studentid", studentId);
             cmd.Prepare();
 
-            //Gather Result Set of Query into a variable
+            // gather Result Set of Query into a variable
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
-            //Create an empty classes list
+            // create an empty classes list
             List<Classes> classes = new List<Classes>();   
 
-            //Loop Through Each Row the Result Set
+            // loop Through Each Row the Result Set
             while (ResultSet.Read())
             {
                 //Access Column information by the DB column name as an index
@@ -174,10 +177,10 @@ namespace Assignment3_N01609602.Controllers
                 string teacherFirstName = ResultSet["teacherfname"].ToString();
                 string teacherLastName = ResultSet["teacherlname"].ToString();
 
-                //Create an new class object
+                // create an new class object
                 Classes newClass = new Classes();
 
-                //Update the fetched data and put it in the new object
+                // update the fetched data and put it in the new object
                 newClass.className = className;
                 newClass.classCode = classCode;
                 newClass.startDate = startDate;
@@ -186,14 +189,14 @@ namespace Assignment3_N01609602.Controllers
                 newClass.teacherLastName= teacherLastName;
 
 
-                //add the newClass object in the classes list
+                // add the newClass object in the classes list
                 classes.Add(newClass);
             }
 
-            //Close the connection between the MySQL Database and the WebServer
+            // close the connection between the MySQL Database and the WebServer
             Conn.Close();
 
-            //Return the classes list data
+            // return the classes list data
             return classes;
 
         }
