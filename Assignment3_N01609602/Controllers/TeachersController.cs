@@ -9,7 +9,7 @@ namespace Assignment3_N01609602.Controllers
 {
     public class TeachersController : Controller
     {
-        // GET: Teachers/list
+        // GET: Teachers/list/{searchKey}
         public ActionResult List(string searchKey = "")
         {
             TeachersDataController controller = new TeachersDataController();
