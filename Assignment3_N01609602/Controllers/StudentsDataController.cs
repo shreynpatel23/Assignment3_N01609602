@@ -1,4 +1,5 @@
 ﻿using Assignment3_N01609602.Models;
+using Google.Protobuf;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -110,7 +111,7 @@ namespace Assignment3_N01609602.Controllers
                 string studentFirstname = ResultSet["studentfname"].ToString();
                 string studentLastname = ResultSet["studentlname"].ToString();
                 string studentNumber = ResultSet["studentnumber"].ToString();
-                string studentEnrolDate = ResultSet["enroldate"].ToString();
+                string studentEnrolDate = Convert.ToDateTime(ResultSet["enroldate"]).ToString("dd/MM/yyyy");
 
                 student.id = studentId;
                 student.firstName = studentFirstname;
@@ -167,8 +168,8 @@ namespace Assignment3_N01609602.Controllers
                 //Access Column information by the DB column name as an index
                 string className = ResultSet["classname"].ToString();
                 string classCode = ResultSet["classcode"].ToString();
-                string startDate = ResultSet["startdate"].ToString();
-                string endDate = ResultSet["finishdate"].ToString();
+                string startDate = Convert.ToDateTime(ResultSet["startdate"]).ToString("dd/MM/yyyy");
+                string endDate = Convert.ToDateTime(ResultSet["finishdate"]).ToString("dd/MM/yyyy");
                 string teacherFirstName = ResultSet["teacherfname"].ToString();
                 string teacherLastName = ResultSet["teacherlname"].ToString();
 

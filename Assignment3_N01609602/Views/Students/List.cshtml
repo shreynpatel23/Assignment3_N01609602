@@ -5,11 +5,17 @@
 
 <h3>Students List</h3>
 <hr />
-@foreach (var student in Model)
-{
-    <div class="list-group">
-        <a href="/Students/Details/@student.id" class="list-group-item list-group-item-action mt-2">
-            @student.firstName @student.lastName
-        </a>
+<form class="d-flex align-items-center mt-4" method="GET" action="/Students/List">
+    <input class="form-control-lg" style="min-width: 600px; margin-right: 1em" type="search" placeholder="Search students" aria-label="Search">
+    <button class="btn btn-lg btn-primary my-2 my-sm-0" type="submit">Search</button>
+</form>
+<div class="card mt-5">
+    <div class="list-group list-group-flush">
+        @foreach (var student in Model)
+        {
+            <a href="/Students/Details/@student.id" class="list-group-item mt-2">
+                @student.firstName @student.lastName
+            </a>
+        }
     </div>
-}
+</div>

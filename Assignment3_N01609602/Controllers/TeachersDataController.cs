@@ -109,7 +109,7 @@ namespace Assignment3_N01609602.Controllers
                 string teacherFirstname = ResultSet["teacherfname"].ToString();
                 string teacherLastname = ResultSet["teacherlname"].ToString();
                 string employeeNumber = ResultSet["employeenumber"].ToString();
-                string hireDate = ResultSet["hiredate"].ToString();
+                string hireDate = Convert.ToDateTime(ResultSet["hiredate"]).ToString("dd/MM/yyyy");
                 decimal salary = Convert.ToDecimal(ResultSet["salary"]);
 
                 teacher.firstName = teacherFirstname;
