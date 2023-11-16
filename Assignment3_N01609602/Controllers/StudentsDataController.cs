@@ -23,8 +23,8 @@ namespace Assignment3_N01609602.Controllers
         /// A list of students objects.
         /// </returns>
         [HttpGet]
-        [Route("api/fetchAllStudents")]
-        public IEnumerable<Student> FetchAllStudents()
+        [Route("api/fetchAllStudents/{searchKey?}")]
+        public IEnumerable<Student> FetchAllStudents(string searchKey)
         {
             //Create an instance of a connection
             MySqlConnection Conn = School.AccessDatabase();
@@ -36,8 +36,9 @@ namespace Assignment3_N01609602.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL QUERY
-            cmd.CommandText = "Select * from students";
+            cmd.CommandText = "Select * from students where lower(studentfname) like lower(@key) or lower(studentlname) like lower(@key) or lower(concat(studentfname, ' ', studentlname)) like lower(@key)";
 
+            cmd.Parameters.AddWithValue("@key", "%" + searchKey + "%");
             cmd.Prepare();
 
             //Gather Result Set of Query into a variable

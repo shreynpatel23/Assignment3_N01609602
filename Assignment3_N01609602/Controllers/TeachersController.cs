@@ -10,10 +10,10 @@ namespace Assignment3_N01609602.Controllers
     public class TeachersController : Controller
     {
         // GET: Teachers/list
-        public ActionResult List()
+        public ActionResult List(string searchKey = "")
         {
             TeachersDataController controller = new TeachersDataController();
-            IEnumerable<Teacher> Teachers = controller.FetchAllTeachers();
+            IEnumerable<Teacher> Teachers = controller.FetchAllTeachers(searchKey);
             return View(Teachers);
         }
 

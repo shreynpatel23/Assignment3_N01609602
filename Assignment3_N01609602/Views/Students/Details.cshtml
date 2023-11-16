@@ -4,26 +4,11 @@
 }
 
 <a href="/Students/List">Back</a>
-<div class="card mt-3" style="width: 50%">
+<div class="card mt-4 w-50">
     <div class="card-body">
-        <h4 class="card-title">@Model.firstName @Model.lastName</h4>
-        <div class="w-100 my-3">
-            <p class="text-dark m-0" style="font-size: 12px">
-                Student number
-            </p>
-            <p class="card-text text-dark m-0" style="font-size: 18px">
-                @Model.studentNumber
-            </p>
-        </div>
-        <div class="w-100 my-3">
-            <p class="text-dark m-0" style="font-size: 12px">
-                Enrol Date
-            </p>
-            <p class="card-text text-dark m-0" style="font-size: 18px">
-                @Model.enrolDate
-            </p>
-        </div>
-        <a href="/Students/Classes/@Model.id" class="btn btn-primary">View Classes</a>
+        <h5 class="card-title">@Model.firstName @Model.lastName</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@Model.studentNumber enrolled on @Model.enrolDate</h6>
+        <a href="/Students/Classes/@Model.id" class="btn btn-sm btn-primary mt-2">View Classes</a>
     </div>
 </div>
 
