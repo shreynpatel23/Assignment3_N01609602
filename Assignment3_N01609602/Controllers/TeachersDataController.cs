@@ -17,6 +17,7 @@ namespace Assignment3_N01609602.Controllers
         /// <summary>
         /// Returns a list of teachers
         /// </summary>
+        /// <param name="searchKey">the term that the user want to serve</param>
         /// <example>GET api/fetchAllTeachers</example>
         /// <returns>
         /// A list of teachers objects.
