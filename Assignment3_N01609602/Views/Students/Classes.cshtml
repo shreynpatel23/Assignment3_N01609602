@@ -6,25 +6,34 @@
 <h3>Student's classes List</h3>
 <hr />
 <a href="/Students/List">Back</a>
-<div class="container mt-3">
-    <div class="row">
-        @foreach (var studentClass in Model)
-        {
-            <div class="col-sm-6">
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title">@studentClass.className</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@studentClass.classCode</h6>
-                        <hr />
-                        <p class="card-text text-secondary">
-                            This class is with <strong>@studentClass.teacherFirstName @studentClass.teacherLastName</strong>
-                            began on <strong>@studentClass.startDate</strong> and concludes on<strong> @studentClass.endDate </strong>.
-                            The dedicated instructor, <strong> @studentClass.teacherFirstName</strong> ,
-                            ensures a dynamic and engaging learning environment.
-                        </p>
+@if (Model != null)
+{
+    if (Model.Count() > 0)
+    {
+        <div class="container mt-3">
+            <div class="row">
+                @foreach (var studentClass in Model)
+                {
+                    <div class="col-sm-6">
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                <h5 class="card-title">@studentClass.className</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@studentClass.classCode</h6>
+                                <hr />
+                                <p class="card-text text-secondary">
+                                    This class is with <strong>@studentClass.teacherFirstName @studentClass.teacherLastName</strong>
+                                    began on <strong>@studentClass.startDate</strong> and concludes on<strong> @studentClass.endDate </strong>.
+                                    The dedicated instructor, <strong> @studentClass.teacherFirstName</strong> ,
+                                    ensures a dynamic and engaging learning environment.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
-        }
-    </div>
-</div>
+        </div>
+    } else
+    {
+        <h5>Student has not yet registered for classes!</h5>
+    }
+}
