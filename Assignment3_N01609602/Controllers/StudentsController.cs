@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment3_N01609602.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,26 @@ namespace Assignment3_N01609602.Controllers
         // GET: Students/List
         public ActionResult List()
         {
-            return View();
+            StudentsDataController controller = new StudentsDataController();
+            IEnumerable<Student> Students = controller.FetchAllStudents();
+            return View(Students);
+        }
+
+
+        //GET : Students/Details/{id}
+        public ActionResult Details(int id)
+        {
+            StudentsDataController controller = new StudentsDataController();
+            Student Student = controller.FetchStudentDetails(id);
+            return View(Student);
+        }
+
+        //GET : Students/Classes/{id}
+        public ActionResult Classes(int id)
+        {
+            StudentsDataController controller = new StudentsDataController();
+            IEnumerable<Classes> Classes = controller.fetchAllClassesOfStudent(id);
+            return View(Classes);
         }
     }
 }

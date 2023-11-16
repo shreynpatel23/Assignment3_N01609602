@@ -35,7 +35,6 @@ namespace Assignment3_N01609602.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL QUERY
-            // cmd.CommandText = "Select * from teachers where lower(authorfname) like lower(@key) or lower(authorlname) like lower(@key) or lower(concat(authorfname, ' ', authorlname)) like lower(@key)";
             cmd.CommandText = "Select * from teachers";
 
             cmd.Prepare();
@@ -53,13 +52,11 @@ namespace Assignment3_N01609602.Controllers
                 int teacherId = Convert.ToInt32(ResultSet["teacherid"]);
                 string teacherFirstname = ResultSet["teacherfname"].ToString();
                 string teacherLastname = ResultSet["teacherlname"].ToString();
-                string hireDate  = ResultSet["hiredate"].ToString();
 
                 Teacher newTeacher = new Teacher();
                 newTeacher.id = teacherId;
                 newTeacher.firstName = teacherFirstname;
                 newTeacher.lastName = teacherLastname;
-                newTeacher.hireDate = hireDate;
 
                 //Add the new teacher to the List
                 teachers.Add(newTeacher);
@@ -76,7 +73,7 @@ namespace Assignment3_N01609602.Controllers
         /// Returns details of the teacher with a given id
         /// </summary>
         /// <param name="id">the id of the teacher to fetch details</param>
-        /// <example>GET api/fetchAllTeachers</example>
+        /// <example>GET api/fetchTeacherDetails/2</example>
         /// <returns>
         /// A Single teacher details
         /// </returns>
@@ -102,7 +99,7 @@ namespace Assignment3_N01609602.Controllers
             //Gather Result Set of Query into a variable
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
-            //Create an empty list of teachers
+            //Create an empty teacher object
             Teacher teacher = new Teacher();
 
             //Loop Through Each Row the Result Set

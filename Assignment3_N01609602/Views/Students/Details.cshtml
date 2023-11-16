@@ -1,0 +1,29 @@
+﻿@model Assignment3_N01609602.Models.Student
+@{
+    ViewBag.Title = "Student Details";
+}
+
+<a href="/Students/List" class="text-primary my-3">Back to List</a>
+<div class="card mt-3" style="width: 50%">
+    <div class="card-body">
+        <h4 class="card-title">@Model.firstName @Model.lastName</h4>
+        <div class="w-100 my-3">
+            <p class="text-dark m-0" style="font-size: 12px">
+                Student number
+            </p>
+            <p class="card-text text-dark m-0" style="font-size: 18px">
+                @Model.studentNumber
+            </p>
+        </div>
+        <div class="w-100 my-3">
+            <p class="text-dark m-0" style="font-size: 12px">
+                Enrol Date
+            </p>
+            <p class="card-text text-dark m-0" style="font-size: 18px">
+                @Model.enrolDate
+            </p>
+        </div>
+        <a href="/Students/Classes/@Model.id" class="btn btn-primary">View Classes</a>
+    </div>
+</div>
+
