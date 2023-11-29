@@ -167,9 +167,16 @@
         xhr.open('POST', url, true);
         xhr.setRequestHeader('content-type','application/json')
         
-        // watch for on load event
-        xhr.onload = function () {
-            window.location.href = "http://localhost:50860/Teachers/List"
+        // check for on state change
+        xhr.onreadystatechange = function () {
+            // check if the request state and ready state
+            // stauts 204 because we are not sending any response back
+            if (xhr.readyState == 4 && xhr.status == 204) {
+
+                // redirect back to the teachers list page
+                window.location.href = "http://localhost:50860/Teachers/List";
+            }
+
         }
 
         // send the api call.

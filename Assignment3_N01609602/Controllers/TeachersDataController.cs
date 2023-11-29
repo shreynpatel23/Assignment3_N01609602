@@ -239,5 +239,36 @@ namespace Assignment3_N01609602.Controllers
             Conn.Close();
 
         }
+
+        /// <summary>
+        /// Deletes a teacher from the teacher list
+        /// </summary>
+        /// <param name="teacherId">The teacher id which we want to remove.</param>
+        /// <example>POST api/deleteTeacher/3</example>
+        [HttpPost]
+        [Route("api/deleteTeacher/{teacherId}")]
+        public void DeleteTeacher(int teacherId)
+        {
+            // create an instance 
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // open the connection
+            Conn.Open();
+
+            // create a command
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // query
+            cmd.CommandText = "Delete from teachers where teacherid=@teacherId";
+            cmd.Parameters.AddWithValue("@teacherId", teacherId);
+            cmd.Prepare();
+
+            // execute the query
+            cmd.ExecuteNonQuery();
+
+            // close the connection
+            Conn.Close();
+
+        }
     }
 }
