@@ -7,11 +7,17 @@ namespace Assignment3_N01609602.Models
 {
     public class Teacher
     {
+        // id of the teacher
         public int id { get; set; } 
+        // first name of the teacher
         public string firstName { get; set; }
+        // last name of the teacher
         public string lastName { get; set; }
+        // employee number of the teacher 
         public string employeeNumber { get; set; }
+        // hire date of the teacher
         public string hireDate { get; set; }
+        // salary of the teacher
         public decimal salary { get; set; }
     }
 }

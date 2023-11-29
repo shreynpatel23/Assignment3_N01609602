@@ -10,6 +10,7 @@
     const salary = document.getElementById('salary')
     const validSalary = document.getElementById('validSalary');
 
+    // declare all the regular expression required for adding a teacher
     const nameRegexp = /^[A-Z a-z]+$/;
     const employeeRegexp = /^[A-Za-z]\d{3}$/;
     const numberRegexp = /^[0-9]+$/
