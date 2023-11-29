@@ -1,6 +1,7 @@
 ﻿using Assignment3_N01609602.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -32,5 +33,20 @@ namespace Assignment3_N01609602.Controllers
             IEnumerable<Classes> Classes = controller.fetchAllClaasesOfTeacher(id);
             return View(Classes);
         }
+
+        //GET : Teachers/Confirm/{id}
+        public ActionResult Confirm(int id)
+        {
+            TeachersDataController controller = new TeachersDataController();
+            Teacher Teacher = controller.FetchTeacherDetails(id);
+            return View(Teacher);
+        }
+
+        //GET : Teachers/Add
+        public ActionResult Add()
+        {
+            return View();
+        }
+
     }
 }

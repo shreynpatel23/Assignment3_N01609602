@@ -1,7 +1,9 @@
 ﻿using Assignment3_N01609602.Models;
+using Microsoft.AspNetCore.Cors;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -186,6 +188,56 @@ namespace Assignment3_N01609602.Controllers
 
             // return the of classes
             return classes;
+        }
+
+
+        /// <summary>
+        /// Adds a teacher to the MySQL Database.
+        /// </summary>
+        /// <param name="newTeacher">the new teacher object that is created with the form fields</param>
+        /// <example>
+        /// POST api/addTeacher
+        /// Request body
+        /// {
+        ///	"firstName":"Shrey",
+        ///	"lastName":"Patel",
+        ///	"employeeNumber":"S123!",
+        ///	"salary":"10000"
+        /// }
+        /// </example>
+        [HttpPost]
+        [Route("api/addTeacher")]
+        public void AddTeacher([FromBody] Teacher newTeacher)
+        {
+
+            // create an instance 
+            MySqlConnection Conn = School.AccessDatabase();
+
+            // open the connection
+            Conn.Open();
+
+            // create a command
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            // query
+            // FOR THIS QUERY ALSO I HAVE CREATED A PROCEDURE CALLED ADD_TEACHER
+            // this procedure will take four paramerters(firstname, lastname, salary, employeeNumber);
+            // it will insert into the teachers table
+            cmd.CommandText = "CALL AddTeacher(@firstName, @lastName, @salary, @employeeNumber);";
+
+            // parameterise the variables to stop sql injection
+            cmd.Parameters.AddWithValue("@firstName", newTeacher.firstName);
+            cmd.Parameters.AddWithValue("@lastName", newTeacher.lastName);
+            cmd.Parameters.AddWithValue("@employeeNumber", newTeacher.employeeNumber);
+            cmd.Parameters.AddWithValue("@salary", newTeacher.salary);
+            cmd.Prepare();
+
+            // execute the query
+            cmd.ExecuteNonQuery();
+
+            // close the connection
+            Conn.Close();
+
         }
     }
 }

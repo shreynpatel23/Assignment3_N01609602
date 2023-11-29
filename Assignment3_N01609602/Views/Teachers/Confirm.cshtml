@@ -1,0 +1,25 @@
+﻿
+@model Assignment3_N01609602.Models.Teacher
+@{
+    ViewBag.Title = "Confirm Delete";
+}
+
+<div class="w-100 d-flex justify-content-center align-items-center" style="height: 600px">
+    <div class="card text-center">
+        <div class="card-body">
+            <h5 class="card-title">Warning!</h5>
+            <p class="card-text">
+                Are you sure you want to delete 
+                <strong>
+                    @Model.firstName @Model.lastName.
+                </strong>  
+                <br /> 
+                You can not revert the action!
+            </p>
+            <div class="d-flex align-items-center justify-content-center gap-3">
+                <a href="/Teachers/Details/@Model.id" class="btn btn-secondary px-4">Cancel</a>
+                <a href="/Teachers/Delete/@Model.id" class="btn btn-danger px-4">Confirm</a>
+            </div>         
+        </div>
+    </div>
+</div>
