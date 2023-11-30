@@ -199,9 +199,9 @@ namespace Assignment3_N01609602.Controllers
         /// POST api/addTeacher
         /// Request body
         /// {
-        ///	"firstName":"Shrey",
-        ///	"lastName":"Patel",
-        ///	"employeeNumber":"S123!",
+        ///	"firstName":"Jhon",
+        ///	"lastName":"Doe",
+        ///	"employeeNumber":"J123",
         ///	"salary":"10000"
         /// }
         /// </example>
@@ -223,6 +223,7 @@ namespace Assignment3_N01609602.Controllers
             // FOR THIS QUERY ALSO I HAVE CREATED A PROCEDURE CALLED ADD_TEACHER
             // this procedure will take four paramerters(firstname, lastname, salary, employeeNumber);
             // it will insert into the teachers table
+            // the teacherid and the hiredate will be auto calculated in database in the procedure
             cmd.CommandText = "CALL AddTeacher(@firstName, @lastName, @salary, @employeeNumber);";
 
             // parameterise the variables to stop sql injection
