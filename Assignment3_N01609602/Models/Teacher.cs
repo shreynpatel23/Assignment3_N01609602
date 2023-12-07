@@ -19,5 +19,18 @@ namespace Assignment3_N01609602.Models
         public string hireDate { get; set; }
         // salary of the teacher
         public decimal salary { get; set; }
+
+        public bool IsValid()
+        {
+            bool valid = true;
+
+            if (firstName == null || lastName == null || employeeNumber == null || salary <=0 )
+            {
+                // check if all the fields are present or not
+                valid = false;
+            }
+
+            return valid;
+        }
     }
 }

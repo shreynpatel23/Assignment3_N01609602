@@ -30,6 +30,14 @@
                 // redirect back to the teachers list page
                 window.location.href = "http://localhost:50860/Teachers/List";
             }
+            else {
+                // extract the error response and convert it to json.
+                const errorResponse = JSON.parse(xhr.response);
+
+                // redirect to error page
+                window.location.href = "http://localhost:50860/Teachers/error?message=" + errorResponse?.InnerException?.ExceptionMessage;
+            }
+
 
         }
 

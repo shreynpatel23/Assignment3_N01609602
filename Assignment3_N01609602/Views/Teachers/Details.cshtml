@@ -12,7 +12,10 @@
         <p class="card-text">
             @Model.firstName is a teacher that was hired on @Model.hireDate . The Salary for the teacher is $@Model.salary
         </p>
-        <a href="/Teachers/Classes/@Model.id" class="btn btn-sm btn-primary mt-2">View Classes</a>
+        <div class="mt-2 d-flex align-items-center justify-content-between">
+            <a href="/Teachers/Edit/@Model.id" class="btn btn-sm btn-primary mt-2">Edit Teacher</a>
+            <a href="/Teachers/Classes/@Model.id" class="btn btn-sm btn-secondary mt-2">View Classes</a>
+        </div>
     </div>
 </div>
 

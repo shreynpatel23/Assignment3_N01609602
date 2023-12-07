@@ -1,4 +1,10 @@
 ﻿window.onload = function () {
+    // split the window location to get the id of the teacher
+    const hrefArray = window.location.pathname.split('/');
+
+    // extract the last element of the array as the path is
+    // .../Edit/{id}
+    const teacherId = Number(hrefArray[hrefArray.length - 1]);
 
     // declare all the variables here
     const firstName = document.getElementById('firstName');
@@ -10,14 +16,14 @@
     const salary = document.getElementById('salary')
     const validSalary = document.getElementById('validSalary');
 
-    // declare all the regular expression required for adding a teacher
+    // declare all the regular expression required for updating a teacher
     const nameRegexp = /^[A-Z a-z]+$/;
     const employeeRegexp = /^[A-Za-z]\d{3}$/;
     const numberRegexp = /^[0-9]+$/
-    const formData = document.getElementById('addTeacherForm');
+    const formData = document.getElementById('editTeacherForm');
 
-    // function to add a new teacher
-    function onAddTeacher(e) {
+    // function to update a new teacher
+    function onUpdateTeacher(e) {
         e.preventDefault();
 
         // check if the firstname is filled or not
@@ -32,7 +38,7 @@
         validFirstName.innerHTML = "";
 
         // check if firstname matches with name regexp
-        if (!nameRegexp.test(formData['firstName']?.value) ) {
+        if (!nameRegexp.test(formData['firstName']?.value)) {
             firstName?.classList?.add('is-invalid');
             validFirstName.classList.remove('d-none');
             validFirstName.innerHTML = "Special Characters not allowed!";
@@ -114,7 +120,7 @@
         validEmployeeNumber.classList.add('d-none');
         validEmployeeNumber.innerHTML = "";
 
-      
+
         // check if the salary is entered or not
         if (formData['salary']?.value === "") {
             salary?.classList?.add('is-invalid');
@@ -125,7 +131,7 @@
         salary?.classList?.remove('is-invalid');
         validSalary.classList.add('d-none');
         validSalary.innerHTML = "";
-        
+
         // check if salary matches with the regexp
         if (!numberRegexp.test(formData['salary']?.value)) {
             salary?.classList?.add('is-invalid');
@@ -139,7 +145,7 @@
         validSalary.innerHTML = "";
 
         // check if salary is greater than 0
-        if (formData['salary']?.value <=0 ) {
+        if (formData['salary']?.value <= 0) {
             salary?.classList?.add('is-invalid');
             validSalary.classList.remove('d-none');
             validSalary.innerHTML = "Salary should be greater than 0!";
@@ -161,12 +167,12 @@
         // create a new xhr instance
         const xhr = new XMLHttpRequest();
         // api url
-        const url = "http://localhost:50860/api/addTeacher";
+        const url = "http://localhost:50860/api/updateTeacher/" + teacherId;
 
         // open the conenction
         xhr.open('POST', url, true);
-        xhr.setRequestHeader('content-type','application/json')
-        
+        xhr.setRequestHeader('content-type', 'application/json')
+
         // check for on state change
         xhr.onreadystatechange = function () {
             // check if the request state and ready state
@@ -191,5 +197,5 @@
     }
 
     // map all the event listners
-    formData.addEventListener('submit', onAddTeacher)
+    formData.addEventListener('submit', onUpdateTeacher)
 }

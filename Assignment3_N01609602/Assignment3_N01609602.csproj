@@ -315,6 +315,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\addTeachers.js" />
+    <Content Include="Scripts\updateTeacher.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -337,6 +338,8 @@
     <Content Include="Views\Teachers\Classes.cshtml" />
     <Content Include="Views\Teachers\Confirm.cshtml" />
     <Content Include="Views\Teachers\Add.cshtml" />
+    <Content Include="Views\Teachers\Error.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
