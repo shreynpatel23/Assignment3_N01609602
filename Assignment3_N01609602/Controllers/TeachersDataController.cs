@@ -21,6 +21,11 @@ namespace Assignment3_N01609602.Controllers
         /// </summary>
         /// <param name="searchKey">the term that the user want to serve</param>
         /// <example>GET api/fetchAllTeachers</example>
+        /// <example>
+        /// GET: curl "http://localhost:50860/api/fetchAllTeachers"
+        /// GET: curl "http://localhost:50860/api/fetchAllTeachers"
+        /// GET: curl "http://localhost:50860/api/fetchAllTeachers"
+        /// </example>
         /// <returns>
         /// A list of teachers objects.
         /// </returns>
@@ -96,6 +101,11 @@ namespace Assignment3_N01609602.Controllers
         /// </summary>
         /// <param name="id">the id of the teacher to fetch details</param>
         /// <example>GET api/fetchTeacherDetails/2</example>
+        /// <example>
+        /// GET: curl "http://localhost:50860/api/fetchTeacherDetails/1"
+        /// GET: curl "http://localhost:50860/api/fetchTeacherDetails/4"
+        /// GET: curl "http://localhost:50860/api/fetchTeacherDetails/8"
+        /// </example>
         /// <returns>
         /// A Single teacher details
         /// </returns>
@@ -172,19 +182,24 @@ namespace Assignment3_N01609602.Controllers
         /// Returns all the classes that the teacher is teaching
         /// </summary>
         /// <param name="teacherId">The teacher id for which we want to fetch details</param>
-        /// <example>GET api/fetchAllClassesOfTeacher/1</example>
+        /// <example>GET api/fetchAllCoursesOfTeacher/1</example>
+        /// <example>
+        /// GET: curl "http://localhost:50860/api/fetchAllCoursesOfTeacher/2"
+        /// GET: curl "http://localhost:50860/api/fetchAllCoursesOfTeacher/3"
+        /// GET: curl "http://localhost:50860/api/fetchAllCoursesOfTeacher/4"
+        /// </example>
         /// <returns>
         /// List of classes that the teacher is teaching
         /// </returns>
         [HttpGet]
-        [Route("api/fetchAllClassesOfTeacher/{teacherid}")]
-        public IEnumerable<Classes> fetchAllClaasesOfTeacher(int teacherId)
+        [Route("api/fetchAllCoursesOfTeacher/{teacherid}")]
+        public IEnumerable<Course> fetchAllCoursesOfTeacher(int teacherId)
         {
             // create an instance 
             MySqlConnection Conn = School.AccessDatabase();
 
             // create an empty list of classes
-            List<Classes> classes = new List<Classes> { };
+            List<Course> classes = new List<Course> { };
 
             try
             {
@@ -212,7 +227,7 @@ namespace Assignment3_N01609602.Controllers
                     string classStartDate = Convert.ToDateTime(resultSet["startdate"]).ToString("dd/MM/yyyy");
                     string classEndDate = Convert.ToDateTime(resultSet["finishdate"]).ToString("dd/MM/yyyy");
 
-                    Classes newClass = new Classes();
+                    Course newClass = new Course();
                     newClass.className = className;
                     newClass.startDate = classStartDate;
                     newClass.endDate = classEndDate;
@@ -259,7 +274,7 @@ namespace Assignment3_N01609602.Controllers
         /// }
         /// </example>
         /// <example>
-        /// POST: curl -d "http://localhost:50860/api/addTeacher" @addTeacher.json -H "Content-type: application/json"
+        /// POST: curl "http://localhost:50860/api/addTeacher" -d @addTeacher.json -H "Content-type: application/json"
         /// </example>
         [HttpPost]
         [Route("api/addTeacher")]
@@ -326,7 +341,7 @@ namespace Assignment3_N01609602.Controllers
         /// <param name="teacherId">The teacher id which we want to remove.</param>
         /// <example>POST api/deleteTeacher/3</example>
         /// <example>
-        /// POST: curl -d "http://localhost:50860/api/deleteTeacher/16" "" -H "Content-type: application/json"
+        /// POST: curl "http://localhost:50860/api/deleteTeacher/16" -d "" -H "Content-type: application/json"
         /// </example>
         [HttpPost]
         [Route("api/deleteTeacher/{teacherId}")]
@@ -393,8 +408,8 @@ namespace Assignment3_N01609602.Controllers
         /// }
         /// </example>
         /// <example>
-        /// METHOD 2 --> POST : curl -d "http://localhost:50860/api/updateTeacher/2" @updateTeacher.json -H "Content-type: application/json"
-        /// METHOD 2 --> POST : curl -d "http://localhost:50860/api/updateTeacher/7" @updateTeacher.json -H "Content-type: application/json"
+        /// METHOD 2 --> POST : curl "http://localhost:50860/api/updateTeacher/2" -d @updateTeachers.json -H "Content-type: application/json"
+        /// METHOD 2 --> POST : curl "http://localhost:50860/api/updateTeacher/7" -d @updateTeacher.json -H "Content-type: application/json"
         /// </example>
         [HttpPost]
         [Route("api/updateTeacher/{teacherId}")]

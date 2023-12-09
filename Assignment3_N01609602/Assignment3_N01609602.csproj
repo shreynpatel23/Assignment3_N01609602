@@ -256,7 +256,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes.cs" />
+    <Compile Include="Models\Course.cs" />
     <Compile Include="Models\SchoolDbContext.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -334,8 +334,8 @@
     <Content Include="Views\Students\List.cshtml" />
     <Content Include="Views\Teachers\Details.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
-    <Content Include="Views\Students\Classes.cshtml" />
-    <Content Include="Views\Teachers\Classes.cshtml" />
+    <Content Include="Views\Students\Courses.cshtml" />
+    <Content Include="Views\Teachers\Courses.cshtml" />
     <Content Include="Views\Teachers\Confirm.cshtml" />
     <Content Include="Views\Teachers\Add.cshtml" />
     <Content Include="Views\Teachers\Error.cshtml" />

@@ -55,14 +55,14 @@ namespace Assignment3_N01609602.Controllers
             }
         }
 
-        //GET : Teachers/Classes/{id}
-        public ActionResult Classes(int id)
+        //GET : Teachers/Courses/{id}
+        public ActionResult Courses(int id)
         {
             try
             {
                 // fetch all classes
-                IEnumerable<Classes> Classes = controller.fetchAllClaasesOfTeacher(id);
-                return View(Classes);
+                IEnumerable<Course> Courses = controller.fetchAllCoursesOfTeacher(id);
+                return View(Courses);
             }
             catch (Exception ex)
             {

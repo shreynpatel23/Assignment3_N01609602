@@ -135,13 +135,13 @@ namespace Assignment3_N01609602.Controllers
         /// Returns all the classes that the student is enrolled
         /// </summary>
         /// <param name="studentId">The student id for which we want to fetch details</param>
-        /// <example>GET api/fetchAllClassesOfStudent/1</example>
+        /// <example>GET api/fetchAllCoursesOfStudent/1</example>
         /// <returns>
         /// List of classes the student is enrolled in
         /// </returns>
         [HttpGet]
-        [Route("api/fetchAllClassesOfStudent/{studentId}")]
-        public List<Classes> fetchAllClassesOfStudent(int studentId)
+        [Route("api/fetchAllCoursesOfStudent/{studentId}")]
+        public List<Course> fetchAllCoursesOfStudent(int studentId)
         {
             // create an instance
             MySqlConnection Conn = School.AccessDatabase();
@@ -165,7 +165,7 @@ namespace Assignment3_N01609602.Controllers
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
             // create an empty classes list
-            List<Classes> classes = new List<Classes>();   
+            List<Course> classes = new List<Course>();   
 
             // loop Through Each Row the Result Set
             while (ResultSet.Read())
@@ -179,7 +179,7 @@ namespace Assignment3_N01609602.Controllers
                 string teacherLastName = ResultSet["teacherlname"].ToString();
 
                 // create an new class object
-                Classes newClass = new Classes();
+                Course newClass = new Course();
 
                 // update the fetched data and put it in the new object
                 newClass.className = className;

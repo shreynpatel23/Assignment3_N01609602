@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Assignment3_N01609602.Models
 {
-    public class Classes
+    public class Course
     {
         // id of the course
         public int id { get; set; }
