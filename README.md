@@ -9,6 +9,9 @@ This application will help you to
 - Search through the teacher's list with their first name and last name.
 - View each teacher's details.
 - View subjects that the teacher is teaching.
+- Add a new Teacher
+- Delete an existing Teacher
+- Update a Teacher
 
 ## For Students
 This application will help you to
