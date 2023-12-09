@@ -340,6 +340,7 @@
     <Content Include="Views\Teachers\Add.cshtml" />
     <Content Include="Views\Teachers\Error.cshtml" />
     <Content Include="Views\Teachers\Edit.cshtml" />
+    <Content Include="Views\Students\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

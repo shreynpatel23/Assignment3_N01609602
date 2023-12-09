@@ -77,13 +77,11 @@ namespace Assignment3_N01609602.Controllers
             catch (MySqlException ex)
             {
                 // database issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the database!.", ex);
             }
             catch (Exception ex)
             {
                 // server issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the server!.", ex);
             }
             finally
@@ -239,13 +237,11 @@ namespace Assignment3_N01609602.Controllers
             catch (MySqlException ex)
             {
                 // database issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the database!.", ex);
             }
             catch (Exception ex)
             {
                 // server issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the server!.", ex);
             }
             finally
@@ -317,13 +313,11 @@ namespace Assignment3_N01609602.Controllers
             catch (MySqlException ex)
             {
                 // database issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the database!.", ex);
             }
             catch (Exception ex)
             {
                 // server issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the server!.", ex);
             }
 
@@ -374,13 +368,11 @@ namespace Assignment3_N01609602.Controllers
             catch (MySqlException ex)
             {
                 // database issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the database!.", ex);
             }
             catch (Exception ex)
             {
                 // server issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the server!.", ex);
             }
 
@@ -455,13 +447,11 @@ namespace Assignment3_N01609602.Controllers
             catch (MySqlException ex)
             {
                 // database issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the database!.", ex);
             }
             catch (Exception ex)
             {
                 // server issue
-                Debug.Write(ex);
                 throw new ApplicationException("Someething wrong with the server!.", ex);
             }
 
